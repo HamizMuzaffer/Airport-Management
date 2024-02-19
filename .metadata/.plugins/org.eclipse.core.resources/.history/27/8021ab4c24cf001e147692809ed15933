@@ -1,0 +1,236 @@
+package passengerdetails;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+class Myframe extends JFrame implements ActionListener {
+    // Variables
+    JLabel label0, label1, label2, label3, label4, label5, label6, label7, label8, label9, label10;
+    JTextField t0, t1, t2, t5, t6, t7, t8;
+    JRadioButton male, female, transgender;
+    JComboBox<String> day, month, year; // JComboBox components for day, month, and year
+    JTextArea ta1, screen; // JTextArea components for user input and displaying output
+    JCheckBox terms; // Checkbox for terms and conditions
+    JButton submit, button; // Button to submit the form
+    JLabel msg;  // Label to display messages to the user
+
+    Myframe() {   // Constructor method
+        setTitle("Passenger Details");
+        setSize(600, 600);
+        setLocationRelativeTo(null);  // Set the frame to be centered on the screen
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setBackground(new Color(0x0096FF));
+        
+        Container c = getContentPane(); 
+        c.setFont(new Font("Boiling Demo Black",Font.PLAIN,10));
+        c.setLayout(null); 
+        
+        
+        label0 = new JLabel("First Name:");
+        label0.setBounds(20, 20, 200, 20);
+        label0.setFont(new Font("Boiling Demo Black",Font.PLAIN,15));
+        c.add(label0);
+
+        t0 = new JTextField();
+        t0.setBounds(130, 20, 200, 20);
+        c.add(t0);
+        
+        //for name
+        label1 = new JLabel("Last Name:"); // Label for first name
+        label1.setBounds(20, 50, 200, 20); // Set bounds for label
+        c.add(label1);  // Add label to the content pane
+
+        t1 = new JTextField();  // Text field for first name
+        t1.setBounds(130, 50, 200, 20);  // Set bounds for text field
+        c.add(t1);  // Add text field to the content pane
+
+
+        label2 = new JLabel("Email:");
+        label2.setBounds(20, 80, 200, 20);
+        c.add(label2);
+
+        t2 = new JTextField();
+        t2.setBounds(130, 80, 200, 20);
+        c.add(t2);
+
+        // Similar initialization for other input fields and components...
+
+        //for gender
+        label3 = new JLabel("Gender:");
+        label3.setBounds(20, 120, 100, 20);
+        c.add(label3);
+
+        male = new JRadioButton("Male");  // Radio button for male gender
+        female = new JRadioButton("Female"); // Radio button for female gender
+        transgender = new JRadioButton("Transgender"); // Radio button for trans gender
+
+        male.setBounds(130, 120, 80, 20);  // Set bounds for radio buttons
+        female.setBounds(220, 120, 80, 20);
+        transgender.setBounds(310, 120, 100, 20);
+
+        male.setSelected(true); // Set male radio button selected by default
+        c.add(male); // Add male radio button to the content pane
+        c.add(female); // Add female radio button to the content pane
+        c.add(transgender); // Add transgender radio button to the content pane
+
+        //making this qk automatically male female dono ticked hjate the tow us cheez ko avoid
+        //krne k liye k bas ek he tick ho at a time isliye ye btngrp banaya
+        // ButtonGroup initialization to ensure only one radio button can be selected at a time
+        ButtonGroup gen = new ButtonGroup();
+        gen.add(male);
+        gen.add(female);
+        gen.add(transgender);
+        
+        // For DOB
+        label4 = new JLabel("DOB:");
+        label4.setBounds(20, 160, 100, 20);
+        c.add(label4);
+
+        // Array initialization for JComboBox components
+        String[] days = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13",
+                "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
+                "27", "28", "29", "30", "31"};
+        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August",
+                "September", "October", "November", "December"};
+        String[] years = {"2024", "2023", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014",
+                "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004",
+                "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995",
+                "1994", "1993", "1992", "1991", "1990"};
+
+        // Initialize JComboBox components for days, months, and years
+        day = new JComboBox<>(days);
+        month = new JComboBox<>(months);
+        year = new JComboBox<>(years);
+
+        // Set bounds for JComboBox components
+        day.setBounds(130, 160, 50, 20);
+        month.setBounds(190, 160, 100, 20);
+        year.setBounds(300, 160, 70, 20);
+
+        // Add JComboBox components to the container
+        c.add(day);
+        c.add(month);
+        c.add(year);
+
+        //for nationality
+        label5 = new JLabel("Nationality: ");
+        label5.setBounds(20, 200, 200, 20);
+        c.add(label5);
+
+        t5 = new JTextField();
+        t5.setBounds(130, 200, 200, 20);
+        c.add(t5);
+
+        //for ID
+        label6 = new JLabel("ID Card No: ");
+        label6.setBounds(20, 230, 200, 20);
+        c.add(label6);
+
+        t6 = new JTextField();
+        t6.setBounds(130, 230, 200, 20);
+        c.add(t6);
+
+        //for age
+        label7 = new JLabel("Passport No:");
+        label7.setBounds(20, 260, 200, 20);
+        c.add(label7);
+
+        t7 = new JTextField();
+        t7.setBounds(130, 260, 200, 20);
+        c.add(t7);
+
+        //for phone no
+        label8 = new JLabel("Mobile No:");
+        label8.setBounds(20, 290, 200, 20);
+        c.add(label8);
+
+        t8 = new JTextField();
+        t8.setBounds(130, 290, 200, 20);
+        c.add(t8);
+
+        terms = new JCheckBox("Kindly accept terms and conditions");
+        terms.setBounds(130, 400, 250, 20);
+        c.add(terms);
+
+        submit = new JButton("Submit");
+        submit.setBounds(150, 440, 200, 30);
+        c.add(submit);
+
+        // Adding ActionListener to the submit button
+        submit.addActionListener(this);
+
+        screen = new JTextArea();  // Text area for displaying passenger details
+        screen.setBounds(450, 80, 200, 150);  //left, top , width, height 
+        c.add(screen);
+
+        msg = new JLabel(" ");  // Label for displaying messages to the user
+        msg.setBounds(110, 480, 300, 20);
+        c.add(msg);
+
+
+        label10 = new JLabel("PLEASE SUBMIT THE FRONT AND BACK IMAGE OF YOUR PASSPORT. ");
+        label10.setBounds(60, 320, 450, 30);
+        c.add(label10);
+
+        button = new JButton("Select File");
+        button.addActionListener(this);
+        button.setBounds(150, 360, 200, 30);
+        c.add(button);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == button) {
+            JFileChooser fileChooser = new JFileChooser();
+            int response = fileChooser.showSaveDialog(null);
+            if (response == JFileChooser.APPROVE_OPTION) {
+                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                System.out.println(file);
+            }
+        } else if (e.getSource() == submit) {
+            if (terms.isSelected()) {
+                msg.setText("Thankyou! Details have been saved Successfully. ✈");
+
+                // Retrieve user input from text fields, radio buttons, and combo boxes
+                String email = t0.getText();
+                String firstName = t1.getText();
+                String lastName = t2.getText();
+                String gender = "Male";
+                if (female.isSelected()) {
+                    gender = "Female";
+                } else if (transgender.isSelected()) {
+                    gender = "Transgender";
+                }
+                String dob = day.getSelectedItem() + "-" + month.getSelectedItem() + "-" + year.getSelectedItem();
+                String nationality = t5.getText();
+                String idCardNo = t6.getText();
+                String passportNo = t7.getText();
+                String mobileNO = t8.getText();
+//                String address = ta1.getText();
+                screen.setText("Email: " + email + "\n" +
+                        "First Name: " + firstName + "\n" +
+                        "Last Name: " + lastName + "\n" +
+                        "Gender: " + gender + "\n" +
+                        "DOB: " + dob + "\n" +
+                        "Nationality: " + nationality + "\n" +
+                        "ID Card No: " + idCardNo + "\n" +
+                        "Passport No: " + passportNo + "\n" +
+                        "Mobile No: " + mobileNO); 
+                        //+ "\n" + "Address: " + address);
+            } else {
+                msg.setText("Kindly Accept terms and conditions to submit. ☺");
+                screen.setText(" ");
+            }
+        }
+        setVisible(true);  // Set frame visibility to true
+    }
+
+    public static void main(String[] args) {
+        Myframe frame = new Myframe();// Create an instance of Myframe
+        frame.setVisible(true);
+    }
+}
+

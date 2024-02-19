@@ -1,0 +1,457 @@
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+class payFrame extends JFrame {
+    payFrame() {
+        setTitle("NHU International Airlines");
+        setSize(600, 600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setBackground(new Color(0x0096FF));
+        Container c = getContentPane();
+        c.setLayout(null);
+
+        JLabel label = new JLabel("Your flight details have been finalized.");  
+        label.setFont(new Font("Boiling Demo Black",Font.PLAIN,20));
+        label.setBackground(new Color(0x0096FF));
+        
+        label.setForeground(Color.BLACK);
+        label.setBounds(50, 30, 380, 25);
+        c.add(label);
+        
+      
+        
+        JLabel labe2 = new JLabel("Now, you may proceed with the payment!");  
+        Font boldFont2 = new Font("SansSerif", Font.BOLD, 20);
+        labe2.setFont(boldFont2);
+        labe2.setBounds(50, 60, 500, 25);
+        labe2.setForeground(Color.BLACK);
+        c.add(labe2);
+
+        JRadioButton creditCard = new JRadioButton("Credit Card");
+        creditCard.setBounds(60, 150, 300, 30);
+        creditCard.setFont(new Font("Monospaced", Font.BOLD, 20));
+
+        c.add(creditCard);
+       JLabel cardIcon = new JLabel();
+       String imagePath  = "F:\\Hamiz\\Nazeer Hussain University\\OOP'S\\NHU International Airlines\\NHU Airlines\\src\\mastercard.png";
+       cardIcon.setBounds(270,65,200,200);
+       ImageIcon image1 = new ImageIcon(imagePath);
+	         cardIcon.setIcon(image1);
+       c.add(cardIcon);
+       
+       
+       
+       
+       
+        JRadioButton payPal = new JRadioButton("PayPal");
+        payPal.setBounds(60, 200, 300, 30);
+        payPal.setFont(new Font("Monospaced", Font.BOLD, 20));
+
+        c.add(payPal);
+
+        JLabel paypalIcon = new JLabel();
+        String imagePath1  = "F:\\Hamiz\\Nazeer Hussain University\\OOP'S\\NHU International Airlines\\NHU Airlines\\src\\paypal.png";
+        paypalIcon.setBounds(270,90,200,200);
+        ImageIcon image2 = new ImageIcon(imagePath1);
+ 	         paypalIcon.setIcon(image2);
+        c.add(paypalIcon);
+        
+        
+        
+        
+        JRadioButton bankTransfer = new JRadioButton("Bank Account");
+        bankTransfer.setBounds(60, 250, 300, 30);
+        bankTransfer.setFont(new Font("Monospaced", Font.BOLD, 20));
+
+        c.add(bankTransfer);
+
+        ButtonGroup creditCardButtonGroup = new ButtonGroup();
+        creditCardButtonGroup.add(creditCard);
+        creditCardButtonGroup.add(payPal);
+        creditCardButtonGroup.add(bankTransfer);
+
+        creditCard.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                CreditCardDetailsWindow creditCardWindow = new CreditCardDetailsWindow();
+                creditCardWindow.setVisible(true);
+            }
+        });
+
+        payPal.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                PayPalDetailsWindow payPalWindow = new PayPalDetailsWindow();
+                payPalWindow.setVisible(true);
+            }
+        });
+
+        bankTransfer.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                BankTransferDetailsWindow bankTransferWindow = new BankTransferDetailsWindow();
+                bankTransferWindow.setVisible(true);
+            }
+        });
+    }
+}
+
+class CreditCardDetailsWindow extends JFrame {
+    CreditCardDetailsWindow() {
+        setTitle("Credit Card Details");
+        setSize(600, 600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        Container c = getContentPane();
+        c.setLayout(null);
+        c.setBackground(new Color(100, 100, 150));
+        c.setForeground(Color.WHITE);             
+
+        JLabel paytype = new JLabel("Payment Type:");
+        paytype.setBounds(70, 30, 150, 35);
+        c.add(paytype);
+        paytype.setForeground(Color.WHITE);               
+
+        String[] payed = {"VISA", "Master Card"};
+        JComboBox<String> paytypeComboBox = new JComboBox<>(payed);
+        paytypeComboBox.setBounds(160, 30, 150, 32);
+        c.add(paytypeComboBox);
+
+        
+        JLabel cardNO = new JLabel("Card Number:");
+        cardNO.setBounds(70, 80, 80, 40);
+        c.add(cardNO);
+        cardNO.setForeground(Color.WHITE);                        
+
+        JTextField CD = new JTextField(20);
+        CD.setBounds(160, 80, 200, 35);
+        c.add(CD);
+
+        JLabel name = new JLabel("Enter Name:");
+        name.setBounds(70, 130, 80, 40);
+        c.add(name);
+        name.setForeground(Color.WHITE);               
+
+        JTextField na = new JTextField(20);
+        na.setBounds(160, 130, 200, 35);
+        c.add(na);
+
+        JLabel validUntil = new JLabel("Valid Until:");
+        validUntil.setBounds(70, 180, 120, 30);
+        c.add(validUntil);
+        validUntil.setForeground(Color.WHITE);               
+
+        String[] months = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"};
+        JComboBox<String> validityMonthComboBox = new JComboBox<>(months);
+        validityMonthComboBox.setBounds(160, 180, 35, 25);
+        c.add(validityMonthComboBox);
+
+        String[] years = {"2024", "2025", "2026", "2027", "2028", "2029", "2030"};
+        JComboBox<String> validityYearComboBox = new JComboBox<>(years);
+        validityYearComboBox.setBounds(200, 180, 65, 25);
+        c.add(validityYearComboBox);
+
+        JLabel cvc = new JLabel("CVC:");
+        cvc.setBounds(280, 180, 60, 25);
+        c.add(cvc);
+        cvc.setForeground(Color.WHITE);               
+
+        JTextField CV = new JTextField(20);
+        CV.setBounds(315, 180, 60, 28);
+        c.add(CV);
+
+        JLabel pvc = new JLabel("PVC:");
+        pvc.setBounds(70, 220, 60, 25);
+        c.add(pvc);
+        pvc.setForeground(Color.WHITE);               
+
+        JTextField PV = new JTextField(20);
+        PV.setBounds(160, 220, 100, 28);
+        c.add(PV);
+
+        JButton submitButton = new JButton("Submit");
+        submitButton.setBounds(160, 260, 80, 30);
+        c.add(submitButton);
+        submitButton.setForeground(Color.BLUE);               
+
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Thanks for your payment via Credit Card!");
+            }
+        });
+
+        JButton exitButton = new JButton("Exit");
+        exitButton.setBounds(260, 260, 80, 30);
+        c.add(exitButton);
+        exitButton.setForeground(Color.BLUE);               //clr
+
+        exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                payFrame mainPage = new payFrame();
+                mainPage.setVisible(true);
+            }
+        });
+
+        setContentPane(c);
+    }
+}
+
+class PayPalDetailsWindow extends JFrame {
+    PayPalDetailsWindow() {
+        setTitle("PayPal Details");
+        setSize(600, 600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBackground(new Color(100, 100, 150));
+
+        JLabel emailLabel = new JLabel("Your Email:");
+        emailLabel.setBounds(120, 200, 90, 35);
+        panel.add(emailLabel);
+        emailLabel.setForeground(Color.WHITE);                     //clr
+
+        JTextField emailTextField = new JTextField(20);
+        emailTextField.setBounds(190, 200, 200, 40);
+        panel.add(emailTextField);
+
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordLabel.setBounds(120, 260, 80, 35);
+        panel.add(passwordLabel);
+        passwordLabel.setForeground(Color.WHITE);               //clr
+
+        JPasswordField passwordField = new JPasswordField(20);
+        passwordField.setBounds(190, 260, 200, 40);
+        panel.add(passwordField);
+
+        JButton loginButton = new JButton("Login");
+        loginButton.setBounds(250, 320, 90, 40);
+        panel.add(loginButton);
+        loginButton.setForeground(Color.BLUE);             //clr
+
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Process login details
+                JOptionPane.showMessageDialog(null, "Login successful. Proceeding to further details.");
+                dispose();
+                FurtherDetailsWindow furtherDetailsWindow = new FurtherDetailsWindow();
+                furtherDetailsWindow.setVisible(true);
+            }
+        });
+
+        setContentPane(panel);
+    }
+}
+
+class BankTransferDetailsWindow extends JFrame {
+    BankTransferDetailsWindow() {
+        setTitle("Bank Transfer Details");
+        setSize(600, 600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBackground(new Color(100, 100, 150));
+
+        JLabel accountLabel = new JLabel("Account Number:");
+        accountLabel.setBounds(50, 30, 120, 25);
+        panel.add(accountLabel);
+        accountLabel.setForeground(Color.WHITE);
+
+        JTextField accountTextField = new JTextField(20);
+        accountTextField.setBounds(200, 30, 200, 25);
+        panel.add(accountTextField);
+
+        JLabel nameLabel = new JLabel("Account Holder Name:");
+        nameLabel.setBounds(50, 70, 150, 25);
+        panel.add(nameLabel);
+        nameLabel.setForeground(Color.WHITE);
+
+        JTextField nameTextField = new JTextField(20);
+        nameTextField.setBounds(200, 70, 200, 25);
+        panel.add(nameTextField);
+
+        JLabel ammountLabel = new JLabel("Amount:");
+        ammountLabel.setBounds(50, 110, 150, 25);
+        panel.add(ammountLabel);
+        ammountLabel.setForeground(Color.WHITE);
+        
+        JTextField ammountTextField = new JTextField(20);
+        ammountTextField.setBounds(200, 110, 200, 25);
+        panel.add(ammountTextField);
+
+
+        JCheckBox receiptCheckBox = new JCheckBox("Send receipt via email");
+        receiptCheckBox.setBounds(50, 150, 200, 25);
+        panel.add(receiptCheckBox);
+        receiptCheckBox.setForeground(Color.DARK_GRAY);
+
+        JLabel emailLabel = new JLabel("Email:");
+        emailLabel.setBounds(50, 190, 100, 25);
+        panel.add(emailLabel);
+        emailLabel.setForeground(Color.WHITE);
+
+        JTextField emailTextField = new JTextField(20);
+        emailTextField.setBounds(200, 190, 200, 25);
+        emailLabel.setVisible(false);
+        emailTextField.setVisible(false);
+        panel.add(emailTextField);
+        
+
+        receiptCheckBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                boolean selected = receiptCheckBox.isSelected();
+                emailLabel.setVisible(selected);
+                emailTextField.setVisible(selected);
+                receiptCheckBox.setForeground(Color.BLUE);
+
+            }
+        });
+
+        JButton submitButton = new JButton("Submit");
+        submitButton.setBounds(200, 230, 100, 30);
+        panel.add(submitButton);
+        submitButton.setForeground(Color.BLUE);
+//        submitButton.setBackground(Color.LIGHT_GRAY); 
+
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Thanks for your payment via Bank Transfer!");
+                dispose();
+                payFrame mainPage = new payFrame();
+                mainPage.setVisible(true);
+                
+            }
+        });
+
+        setContentPane(panel);
+    }
+}
+
+class FurtherDetailsWindow extends JFrame {
+    FurtherDetailsWindow() {
+        setTitle("Further Details");
+        setSize(600, 600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        panel.setBackground(new Color(100, 100, 150));
+
+        JLabel countryLabel = new JLabel("Select Country:");
+        countryLabel.setBounds(50, 30, 120, 25);
+        panel.add(countryLabel);
+        countryLabel.setForeground(Color.WHITE);
+
+        String[] countries = {"Afghanistan", "Indonesia", "Bhutan", "Canada", "Nepal", "Pakistan", "Brazil", "Russia", "China", "India", "Bangladesh", "Japan", "Germany", "France",
+            "United Kingdom", "Italy", "South Korea", "Spain", "Australia", "Mexico", "Indonesia", "Turkey", "Netherlands", "Saudi Arabia", "Switzerland", "Argentina", "Sweden", 
+            "Poland", "Norway", "Austria", "United Arab Emirates", "Belgium", "Iran", "Thailand", "Nigeria", "Egypt", "Israel", "Ireland", "Denmark", "Singapore", "Philippines", 
+            "Malaysia", "South Africa", "Greece", "Finland", "New Zealand", "Vietnam", "Colombia", "Portugal", "Chile", "Iraq", "Czech Republic", "Peru", "Qatar", "Kazakhstan",
+            "Hungary", "Algeria", "Ukraine", "Romania", "Morocco", "Ecuador", "Syria", "Oman", "Bolivia", "Belarus", "Cuba", "Sudan", "Sweden", "Ghana", "Sri Lanka", "Tunisia", 
+            "Yemen", "Guinea", "Cambodia", "Senegal", "Angola", "Somalia", "Rwanda", "Chad", "Sierra Leone", "Niger", "Burkina Faso", "Mali", "Malawi", "Liberia", "Mauritania", 
+            "Namibia", "Botswana", "Lesotho", "Gambia", "Gabon", "Swaziland"};
+        //{"USA", "Canada", "UK", "Australia", "Germany", "Pakistan", ""}; 
+        JComboBox<String> countryComboBox = new JComboBox<>(countries);
+        countryComboBox.setBounds(200, 30, 120, 25);
+        panel.add(countryComboBox);
+
+        JLabel amountLabel = new JLabel("Enter Amount:");
+        amountLabel.setBounds(50, 70, 120, 25);
+        panel.add(amountLabel);
+        amountLabel.setForeground(Color.WHITE);
+
+        JTextField amountTextField = new JTextField();
+        amountTextField.setBounds(200, 70, 120, 25);
+        panel.add(amountTextField);
+
+        JLabel paymentMethodLabel = new JLabel("How do you want to pay?");
+        paymentMethodLabel.setBounds(50, 110, 200, 25);
+        panel.add(paymentMethodLabel);
+        paymentMethodLabel.setForeground(Color.WHITE);
+
+        JRadioButton bankAccountRadio = new JRadioButton("Bank Account");
+        bankAccountRadio.setBounds(50, 140, 120, 25);
+        panel.add(bankAccountRadio);
+//        bankAccountRadio.setForeground(Color.WHITE);
+
+
+        JRadioButton debitCardRadio = new JRadioButton("Debit Card");
+        debitCardRadio.setBounds(200, 140, 120, 25);
+        panel.add(debitCardRadio);
+
+        JRadioButton creditCardRadio = new JRadioButton("Credit Card");
+        creditCardRadio.setBounds(350, 140, 120, 25);
+        panel.add(creditCardRadio);
+
+        ButtonGroup paymentMethodGroup = new ButtonGroup();
+        paymentMethodGroup.add(bankAccountRadio);
+        paymentMethodGroup.add(debitCardRadio);
+        paymentMethodGroup.add(creditCardRadio);
+
+        JLabel accountNumberLabel = new JLabel("  Enter Account Number:");
+        accountNumberLabel.setBounds(80, 180, 220, 25);
+        panel.add(accountNumberLabel);
+        accountNumberLabel.setForeground(Color.WHITE);
+
+        JTextField accountNumberField = new JTextField();
+        accountNumberField.setBounds(80, 210, 220, 25);
+        panel.add(accountNumberField);
+
+        JButton submitButton = new JButton("Submit");
+        submitButton.setBounds(80, 250, 100, 40);
+        panel.add(submitButton);
+        submitButton.setForeground(Color.BLUE);
+
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String country = (String) countryComboBox.getSelectedItem();
+                String amount = amountTextField.getText();
+                String paymentMethod = "";
+                if (bankAccountRadio.isSelected()) {
+                    paymentMethod = "Bank Account";
+                } else if (debitCardRadio.isSelected()) {
+                    paymentMethod = "Debit Card";
+                } else if (creditCardRadio.isSelected()) {
+                    paymentMethod = "Credit Card";
+                }
+                String accountNumber = accountNumberField.getText();
+
+                String message = "Country: " + country + "\n" +
+                                 "Amount: $" + amount + "\n" +
+                                 "Payment Method: " + paymentMethod + "\n" +
+                                 "Account Number: " + accountNumber;
+                JOptionPane.showMessageDialog(null, message);
+            }
+        });
+
+        JButton exitButton = new JButton("Exit");
+        exitButton.setBounds(200, 250, 100, 40);
+        panel.add(exitButton);
+        exitButton.setForeground(Color.BLUE);
+
+        exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                payFrame mainPage = new payFrame();
+                mainPage.setVisible(true);
+            }
+        });
+
+        setContentPane(panel);
+    }
+}
+
+public class Payment {
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            payFrame frame = new payFrame();
+            frame.setVisible(true);
+        });
+    }
+}

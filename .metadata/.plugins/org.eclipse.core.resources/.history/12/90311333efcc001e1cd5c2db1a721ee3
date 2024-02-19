@@ -1,0 +1,17 @@
+import javax.swing.JFrame;
+
+public class NewWindow {
+
+	JFrame newframe = new JFrame();
+	 
+	
+	
+	public NewWindow() {
+		newframe.setSize(600, 600); 
+		
+	}
+	
+	
+	
+	
+}

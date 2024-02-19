@@ -1,0 +1,21 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class NewWindow {
+
+	JFrame newframe = new JFrame();
+	 JLabel label = new JLabel();
+	
+	
+	public NewWindow() {
+		newframe.setSize(600, 600); 
+		newframe.setLocationRelativeTo(null); 
+		newframe.setResizable(false); 
+		newframe.setDefaultCloseOperation(1);
+		
+	}
+	
+	
+	
+	
+}
