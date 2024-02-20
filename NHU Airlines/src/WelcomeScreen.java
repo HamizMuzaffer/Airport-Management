@@ -28,7 +28,7 @@ public class WelcomeScreen extends JFrame implements ActionListener{
 	         redpanel.setBounds(60,100,500,500);
 	         redpanel.setBackground(new Color(0x0096FF));
 	         	         
-	         JPanel headpanel = new JPanel(); 
+	         JPanel headpanel = new JPanel();
 
 	         headpanel.setBounds(460,180,400,250);
 	         headpanel.setBackground(new Color(0x0096FF));

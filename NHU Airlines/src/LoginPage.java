@@ -74,8 +74,10 @@ import java.awt.event.*;
 	       c.add(btn);
 	       btn.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	            	detailsFrame frame = new detailsFrame();
-	            	 frame.setVisible(true);
+	            	
+//	            	detailsFrame frame = new detailsFrame();
+	            	Myframe frame = new Myframe();// Create an instance of Myframe
+	                frame.setVisible(true);
 	               
 	            	 
 	            }
